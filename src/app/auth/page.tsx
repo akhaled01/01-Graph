@@ -30,7 +30,7 @@ const page = () => {
           </Alert>
         )}
         <h1 className={"text-4xl text-white font-extrabold " + SANS.className}>
-          01-Profile
+          01-Graph
         </h1>
         <div className="flex flex-col items-center justify-center gap-4">
           <Input

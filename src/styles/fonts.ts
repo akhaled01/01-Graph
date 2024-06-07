@@ -10,6 +10,6 @@ export const MONTS_NORMAL = Montserrat({
 });
 
 export const SANS = IBM_Plex_Sans({
-  weight: ["700"],
+  weight: ["400"],
   subsets: ["latin"],
 });
