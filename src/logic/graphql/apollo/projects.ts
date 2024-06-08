@@ -1,7 +1,6 @@
 import { FMT_XP } from "@/logic/utils/xp";
 import { GET_ALL_PROJ_QUERY } from "../queries";
 import GenApolloClient from "./gen";
-import { ColumnDef } from "@tanstack/react-table";
 
 export interface Project {
   name: string;
@@ -9,25 +8,6 @@ export interface Project {
   type: string;
   completed_date: string;
 }
-
-export const columns: ColumnDef<Project>[] = [
-  {
-    accessorKey: "name",
-    header: "Project Name",
-  },
-  {
-    accessorKey: "XPamount",
-    header: "XP",
-  },
-  {
-    accessorKey: "type",
-    header: "Type",
-  },
-  {
-    accessorKey: "completed_date",
-    header: "Completed Date",
-  },
-];
 
 export const GetProjectStats = async (): Promise<Project[] | null> => {
   try {

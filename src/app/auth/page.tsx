@@ -56,20 +56,20 @@ const page = () => {
           <Button
             variant="outline"
             onClick={async () => {
-              const error = await JWT(ident, pass);
-
-              if (error) {
-                switch (error) {
-                  case "401":
-                    seterror("Incorrect credentials used");
-                    break;
-                  case "500":
-                    seterror("Internal server error");
-                    break;
+              JWT(ident, pass).then((error) => {
+                if (error) {
+                  switch (error) {
+                    case "401":
+                      seterror("Incorrect credentials used");
+                      break;
+                    case "500":
+                      seterror("Internal server error");
+                      break;
+                  }
+                } else {
+                  router.push("/");
                 }
-              } else {
-                router.push("/");
-              }
+              });
             }}
           >
             Login

@@ -78,7 +78,3 @@
 *::-webkit-scrollbar {
   display: none;
 }
-
-*::selection {
-  color: rgb(48, 48, 48);
-}
