@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import * as d3 from "d3";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SANS } from "@/styles/fonts";
@@ -19,9 +19,11 @@ const page = () => {
     NetGraph();
   }, []);
 
+  const router = useRouter();
+
   return (
-    <div className="flex items-center justify-center h-screen w-screen bg-black m-0">
-      <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex items-center justify-around h-screen w-screen bg-black m-0">
+      <div className="flex flex-col items-center justify-center gap-4 w-1/2">
         {error && (
           <Alert variant="destructive">
             <ExclamationTriangleIcon className="h-4 w-4" />
@@ -65,6 +67,8 @@ const page = () => {
                     seterror("Internal server error");
                     break;
                 }
+              } else {
+                router.push("/");
               }
             }}
           >
@@ -73,7 +77,7 @@ const page = () => {
         </div>
       </div>
       <div
-        className="flex items-center justify-start w-1/2 h-full"
+        className="flex items-center justify-center w-1/2 h-full"
         id="welcome_graph"
       ></div>
     </div>

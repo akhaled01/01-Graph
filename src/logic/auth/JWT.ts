@@ -1,4 +1,4 @@
-"use client";
+import { setCookie } from "cookies-next";
 
 /**
  * Obtain's the JWT token of the user to make GraphQL queries
@@ -27,7 +27,9 @@ export const JWT = async (
   });
 
   if (res.status === 200) {
-    localStorage.setItem("JWT_TOKEN", await res.text());
+    let token = await res.text();
+    console.log(token);
+    setCookie("JWT_TOKEN", token.replaceAll('"', ""), { maxAge: 60 * 60 });
     return "";
   } else if (res.status === 401) {
     return "401";

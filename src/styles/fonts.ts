@@ -1,7 +1,7 @@
 import { IBM_Plex_Sans, IBM_Plex_Mono, Montserrat } from "next/font/google";
 
 export const MONO_THIN = IBM_Plex_Mono({
-  weight: ["100"],
+  weight: ["500"],
   subsets: ["latin"],
 });
 
