@@ -128,3 +128,21 @@ export const GET_USER_LEVEL = gql`
     }
   }
 `;
+
+/**
+ * Get every skill and their amount
+ */
+export const GET_SKILLS_AMT = gql`
+  query Transaction {
+    transaction(
+      where: {
+        type: {
+          _iregex: "(^|[^[:alnum:]_])[[:alnum:]_]*skill_[[:alnum:]_]*($|[^[:alnum:]_])"
+        }
+      }
+    ) {
+      amount
+      type
+    }
+  }
+`;
