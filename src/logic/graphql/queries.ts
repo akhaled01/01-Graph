@@ -14,29 +14,8 @@ export const BASE_INFO_QUERY = gql`
       id
       login
       auditRatio
-    }
-  }
-`;
-
-export const GENERAL_USER_ATTR = gql`
-  query User {
-    user {
-      attrs
-      auditRatio
-      campus
-      createdAt
-      discordId
-      discordLogin
-      email
-      firstName
-      githubId
-      id
-      lastName
-      login
-      profile
       totalDown
       totalUp
-      updatedAt
     }
   }
 `;
@@ -94,7 +73,7 @@ export const AUDIT_SUCCESS_NUM_QUERY = gql`
 `;
 
 /**
- * Get the user's XP
+ * Get the user's total XP
  */
 export const TOTAL_XP_FOR_USER = gql`
   query Transaction_aggregate {
@@ -115,6 +94,8 @@ export const TOTAL_XP_FOR_USER = gql`
 
 /**
  * get the user's level
+ * 
+ * REQUIRES PARAMETER USERLOGIN (user's username)
  */
 export const GET_USER_LEVEL = gql`
   query Event_user($userlogin: String) {
@@ -130,7 +111,7 @@ export const GET_USER_LEVEL = gql`
 `;
 
 /**
- * Get every skill and their amount
+ * Get every skill and their amount (for radial graph)
  */
 export const GET_SKILLS_AMT = gql`
   query Transaction {
@@ -143,6 +124,18 @@ export const GET_SKILLS_AMT = gql`
     ) {
       amount
       type
+    }
+  }
+`;
+
+/**
+ * each XP transaction with time
+ */
+export const GET_XP_WITH_TIME = gql`
+  query Transaction {
+    transaction(where: { type: { _eq: "xp" } }) {
+      amount
+      createdAt
     }
   }
 `;
