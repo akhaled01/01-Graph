@@ -94,7 +94,7 @@ export const TOTAL_XP_FOR_USER = gql`
 
 /**
  * get the user's level
- * 
+ *
  * REQUIRES PARAMETER USERLOGIN (user's username)
  */
 export const GET_USER_LEVEL = gql`
@@ -133,9 +133,17 @@ export const GET_SKILLS_AMT = gql`
  */
 export const GET_XP_WITH_TIME = gql`
   query Transaction {
-    transaction(where: { type: { _eq: "xp" } }) {
+    transaction(
+      where: {
+        transaction_type: { type: { _eq: "xp" } }
+        object: { type: { _eq: "project" } }
+      }
+    ) {
       amount
       createdAt
+      object {
+        name
+      }
     }
   }
 `;

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { SANS } from "@/styles/fonts";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { JWT } from "@/logic/auth/JWT";
-import { NetGraph } from "@/components/netgraph";
+import { NetGraph } from "@/components/graphs/netgraph";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 
 const page = () => {
@@ -16,16 +16,21 @@ const page = () => {
   const [error, seterror] = useState("");
 
   useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        document.getElementById("auth-submit")?.click();
+      }
+    });
     NetGraph();
   }, []);
 
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-around h-screen w-screen bg-black m-0">
-      <div className="flex flex-col items-center justify-center gap-4 w-1/2">
+    <div className="flex items-center justify-center h-screen w-screen bg-black">
+      <div className="flex flex-col items-center justify-center gap-4 w-1/2 ml-14">
         {error && (
-          <Alert variant="destructive">
+          <Alert variant="destructive" className="w-3/4">
             <ExclamationTriangleIcon className="h-4 w-4" />
             <AlertTitle>JWT Auth Error</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
@@ -34,10 +39,10 @@ const page = () => {
         <h1 className={"text-4xl text-white font-extrabold " + SANS.className}>
           01-Graph
         </h1>
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-5">
           <Input
             type="text"
-            placeholder="username/email"
+            placeholder="01 Credential"
             className="text-white w-96"
             value={ident}
             onChange={(e) => {
@@ -55,6 +60,7 @@ const page = () => {
           />
           <Button
             variant="outline"
+            id="auth-submit"
             onClick={async () => {
               JWT(ident, pass).then((error) => {
                 if (error) {
@@ -77,7 +83,7 @@ const page = () => {
         </div>
       </div>
       <div
-        className="flex items-center justify-center w-1/2 h-full"
+        className="flex items-center justify-center w-full h-full"
         id="welcome_graph"
       ></div>
     </div>

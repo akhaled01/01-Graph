@@ -19,6 +19,8 @@ const config = {
     },
     extend: {
       colors: {
+        componentBg: "#131313",
+        componentBgLighter: "#20202095",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -74,6 +76,12 @@ const config = {
       },
       transitionDuration: {
         "4000": "4000ms",
+      },
+      width: {
+        "700": "700px",
+      },
+      height: {
+        "460": "400px",
       },
     },
   },

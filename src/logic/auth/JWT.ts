@@ -31,7 +31,7 @@ export const JWT = async (
     console.log(token);
     setCookie("JWT_TOKEN", token.replaceAll('"', ""), { maxAge: 60 * 60 });
     return "";
-  } else if (res.status === 401) {
+  } else if (res.status === 401 || res.status === 403) {
     return "401";
   } else {
     console.warn("status code", res.status, res.statusText);

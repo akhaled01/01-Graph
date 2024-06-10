@@ -1,4 +1,10 @@
-import { ApolloClient, HttpLink, InMemoryCache, from } from "@apollo/client";
+import {
+  ApolloClient,
+  DefaultOptions,
+  HttpLink,
+  InMemoryCache,
+  from,
+} from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { getCookie } from "cookies-next";
 
@@ -19,6 +25,17 @@ const httpLink = new HttpLink({
   },
 });
 
+const defaultOptions: DefaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore",
+  },
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all",
+  },
+};
+
 const mainLink = from([errorLink, httpLink]);
 
 /**
@@ -29,6 +46,7 @@ const GenApolloClient = () => {
   return new ApolloClient({
     link: mainLink,
     cache: new InMemoryCache(),
+    defaultOptions: defaultOptions,
   });
 };
 
