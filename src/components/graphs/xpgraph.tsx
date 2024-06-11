@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { GetXPPerProj, XP_PROJ } from "@/logic/graphql/apollo/xptime";
 import { Turncate } from "@/logic/utils/turncate";
 
-const XPTimeGraph: FC = () => {
+const XPPROJCHART: FC = () => {
   const [data, setdata] = useState<XP_PROJ[]>([]);
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -15,8 +15,8 @@ const XPTimeGraph: FC = () => {
     // process data
     if (!data || data.length === 0) return;
     const processeedData = data
-      .sort((a, b) => a.date.getTime() - b.date.getTime())
-      .slice(-15)
+      .sort((a, b) => a.amount - b.amount)
+      .slice(-10)
       .map((project) => ({
         ...project,
         name: Turncate(project.name),
@@ -28,7 +28,7 @@ const XPTimeGraph: FC = () => {
 
     // construct graph with D3
     const margin = { top: 10, right: 30, bottom: 110, left: 50 };
-    let width = 700 - margin.left - margin.right;
+    let width = 500 - margin.left - margin.right;
     let height = 250 - margin.top - margin.bottom;
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
@@ -70,7 +70,8 @@ const XPTimeGraph: FC = () => {
         return x(d.name) ?? "unknown";
       })
       .attr("width", x.bandwidth())
-      .attr("fill", "#69b3a2")
+      .attr("fill", "#FFFFFF76")
+      .attr("rx", 8)
       .attr("height", function (d) {
         return height - y(0);
       })
@@ -93,4 +94,4 @@ const XPTimeGraph: FC = () => {
   );
 };
 
-export default XPTimeGraph;
+export default XPPROJCHART;

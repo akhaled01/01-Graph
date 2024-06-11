@@ -131,18 +131,19 @@ export const GET_SKILLS_AMT = gql`
 /**
  * each XP transaction with time
  */
-export const GET_XP_WITH_TIME = gql`
+export const GET_XP_WITH_PROJECT = gql`
   query Transaction {
     transaction(
       where: {
         transaction_type: { type: { _eq: "xp" } }
-        object: { type: { _eq: "project" } }
+        event: { path: { _eq: "/bahrain/bh-module" } }
       }
     ) {
       amount
       createdAt
       object {
         name
+        type
       }
     }
   }

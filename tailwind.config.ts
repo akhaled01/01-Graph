@@ -20,6 +20,12 @@ const config = {
     extend: {
       colors: {
         componentBg: "#131313",
+        sunnyBlue: "#4B4BFF61",
+        wateryYellow: "#FFA0539F",
+        hgreen: "#53C8FF9F",
+        lightBlue: "#B6B6FF",
+        lightYellow: "#FFFFC3",
+        lightCyan: "#C3FFF7",
         componentBgLighter: "#20202095",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -78,10 +84,13 @@ const config = {
         "4000": "4000ms",
       },
       width: {
-        "700": "700px",
+        "700": "530px",
+        "350": "350px",
       },
       height: {
         "460": "400px",
+        "350": "300px",
+        "250": "273px",
       },
     },
   },

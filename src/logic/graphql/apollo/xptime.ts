@@ -1,16 +1,17 @@
-import { GET_XP_WITH_TIME } from "../queries";
+import { GET_XP_WITH_PROJECT } from "../queries";
 import GenApolloClient from "./gen";
 
 export interface XP_PROJ {
   name: string;
   amount: number;
   date: Date;
+  type: string;
 }
 
 export const GetXPPerProj = async (): Promise<XP_PROJ[]> => {
   try {
     const { data } = await GenApolloClient().query({
-      query: GET_XP_WITH_TIME,
+      query: GET_XP_WITH_PROJECT,
     });
 
     const XP_PROJ_ARR: XP_PROJ[] = [];
@@ -19,6 +20,7 @@ export const GetXPPerProj = async (): Promise<XP_PROJ[]> => {
         name: trans.object.name,
         amount: trans.amount,
         date: new Date(trans.createdAt),
+        type: trans.object.type,
       };
 
       console.warn(XP_PROJ_ARR);
