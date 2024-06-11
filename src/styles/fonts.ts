@@ -14,3 +14,8 @@ export const SANS = IBM_Plex_Sans({
   weight: ["200"],
   subsets: ["latin"],
 });
+
+export const SANS_BOLDER = IBM_Plex_Sans({
+  weight: ["300"],
+  subsets: ["latin"],
+});

@@ -5,7 +5,7 @@
  * @returns - turncated name
  */
 export const Turncate = (name: string): string => {
-  if (name.split("-").length >= 4 || name.length > 8) {
+  if (name.split("-").length >= 4 || name.length > 18) {
     return name.slice(0, 18) + "...";
   }
   return name;

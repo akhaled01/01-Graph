@@ -2,6 +2,7 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { GetXPPerProj, XP_PROJ } from "@/logic/graphql/apollo/xptime";
 import { Turncate } from "@/logic/utils/turncate";
+import { MONO_THIN } from "@/styles/fonts";
 
 const XPPROJCHART: FC = () => {
   const [data, setdata] = useState<XP_PROJ[]>([]);
@@ -55,6 +56,7 @@ const XPPROJCHART: FC = () => {
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end")
+      .attr("class", MONO_THIN.className)
       .style("color", "white");
 
     let y = d3

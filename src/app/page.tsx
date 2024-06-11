@@ -2,8 +2,9 @@
 
 import ProjectTable from "@/components/custom/projtable";
 import Sidebar from "@/components/custom/sidebar";
+import AuditRatioGraph from "@/components/graphs/auditratiograph";
 import XPPROJCHART from "@/components/graphs/xpgraph";
-import { MONO_NORMAL } from "@/styles/fonts";
+import { MONO_NORMAL, MONO_THIN } from "@/styles/fonts";
 import { hasCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -45,8 +46,9 @@ export default function Home() {
           id="bottom-part"
           className="flex items-center justify-between w-full"
         >
-          <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-start gap-2 px-3 py-3">
-            <p className={`text-white`}>Audit Ratio</p>
+          <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center gap-2 px-3 py-3">
+            <p className={`text-white ${MONO_THIN.className} text-2xl mt-2`}>Audit Ratio</p>
+            <AuditRatioGraph />
           </div>
           <div className="w-350 h-350 bg-componentBg rounded-lg"></div>
           <div className="w-350 h-350 bg-componentBg rounded-lg mr-3"></div>

@@ -8,6 +8,8 @@ export interface BasicUserInfo {
   id: number;
   login: string;
   auditRatio: number;
+  auditUp: number;
+  auditDown: number;
 }
 
 /**
@@ -29,6 +31,8 @@ export const GetBasicUserInfo = async (): Promise<BasicUserInfo | null> => {
       id: data.user[0].id,
       login: data.user[0].login,
       auditRatio: data.user[0].auditRatio,
+      auditUp: data.user[0].totalUp,
+      auditDown: data.user[0].totalDown,
     };
 
     return userInfo;
