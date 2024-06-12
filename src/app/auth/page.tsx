@@ -24,6 +24,15 @@ const page = () => {
     NetGraph();
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        seterror("");
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   const router = useRouter();
 
   return (
