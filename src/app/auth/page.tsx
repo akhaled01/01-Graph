@@ -45,7 +45,7 @@ const page = () => {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-        <h1 className={"text-4xl text-white font-extrabold " + SANS.className}>
+        <h1 className={`text-4xl text-white font-extrabold ${SANS.className}`}>
           01-Graph
         </h1>
         <div className="flex flex-col items-center justify-center gap-5">
