@@ -7,9 +7,9 @@ export const FMT_XP = (bytes: number): string => {
 
   const kiloBytes = bytes / 1000;
   if (kiloBytes < 1000) {
-    return `${kiloBytes.toFixed(2)}kB`;
+    return `${kiloBytes.toFixed(1)}kB`;
   } else {
     const megaBytes = kiloBytes / 1000;
-    return `${megaBytes.toFixed(2)}mB`;
+    return `${megaBytes.toFixed(1)}mB`;
   }
 };
