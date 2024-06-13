@@ -4,6 +4,10 @@ import { GetXPPerProj, XP_PROJ } from "@/logic/graphql/apollo/xptime";
 import { Turncate } from "@/logic/utils/turncate";
 import { MONO_THIN } from "@/styles/fonts";
 
+/**
+ * Invokes a GraphQL query to an array of projects
+ * @returns D3 Bar chart of top 10 projects
+ */
 const XPPROJCHART: FC = () => {
   const [data, setdata] = useState<XP_PROJ[]>([]);
   const svgRef = useRef<SVGSVGElement>(null);

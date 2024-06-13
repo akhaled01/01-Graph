@@ -14,6 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!hasCookie("JWT_TOKEN")) {
+      sessionStorage.clear();
       router.push("/auth");
     }
   });
@@ -47,7 +48,9 @@ export default function Home() {
           className="flex items-center justify-between w-full"
         >
           <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center gap-2 px-3 py-3">
-            <p className={`text-white ${SANS.className} text-2xl mt-2`}>Audit Ratio</p>
+            <p className={`text-white ${SANS.className} text-2xl mt-2`}>
+              Audit Ratio
+            </p>
             <AuditRatioGraph />
           </div>
           <div className="w-350 h-350 bg-componentBg rounded-lg"></div>

@@ -4,6 +4,10 @@ import { MONO_THIN, SANS } from "@/styles/fonts";
 import React, { FC, useEffect, useState } from "react";
 import TypeBadge from "./badge";
 
+/**
+ * invokes a query to get all of ur projects
+ * @returns A table of all of your projects
+ */
 const ProjectTable: FC = () => {
   const [data, setdata] = useState<XP_PROJ[]>([]);
 
