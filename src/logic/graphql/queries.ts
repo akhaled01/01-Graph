@@ -50,7 +50,7 @@ export const GET_ALL_PROJ_QUERY = gql`
  * Number of times a user failed someone
  */
 export const AUDIT_FAIL_NUM_QUERY = gql`
-  query Audit_aggregate($userlogin: string) {
+  query Audit_aggregate($userlogin: String) {
     audit_aggregate(
       where: { grade: { _lt: "1" }, auditor: { login: { _eq: $userlogin } } }
     ) {
@@ -65,7 +65,7 @@ export const AUDIT_FAIL_NUM_QUERY = gql`
  * Number of times a user passed someone
  */
 export const AUDIT_SUCCESS_NUM_QUERY = gql`
-  query Audit_aggregate($userlogin: string) {
+  query Audit_aggregate($userlogin: String) {
     audit_aggregate(
       where: { grade: { _gte: "1" }, auditor: { login: { _eq: $userlogin } } }
     ) {
