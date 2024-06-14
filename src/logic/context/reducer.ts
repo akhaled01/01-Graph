@@ -1,35 +1,50 @@
 import {
   CLEAR_CREDENTIALS,
   CredentialActionTypes,
-  CredentialStore,
   SET_CREDENTIALS,
 } from "./actions";
 
-const initialState: CredentialStore = {
+interface CredentialStore {
+  jwt: string;
+  login: string;
+}
+
+const initialJwtState: CredentialStore = {
   jwt: "",
   login: "",
 };
 
-const credentialReducer = (
-  state = initialState,
+const jwtReducer = (
+  state = initialJwtState.jwt,
   action: CredentialActionTypes
-): CredentialStore => {
+): string => {
   switch (action.type) {
     case SET_CREDENTIALS:
-      return {
-        ...state,
-        jwt: action.payload.jwt,
-        login: action.payload.login,
-      };
+      return action.payload;
     case CLEAR_CREDENTIALS:
-      return {
-        ...state,
-        jwt: "",
-        login: "",
-      };
+      return "";
     default:
       return state;
   }
 };
 
-export default credentialReducer;
+const initialLoginState: CredentialStore = {
+  jwt: "",
+  login: "",
+};
+
+const loginReducer = (
+  state = initialLoginState.login,
+  action: CredentialActionTypes
+): string => {
+  switch (action.type) {
+    case SET_CREDENTIALS:
+      return action.payload;
+    case CLEAR_CREDENTIALS:
+      return "";
+    default:
+      return state;
+  }
+};
+
+export { jwtReducer, loginReducer };

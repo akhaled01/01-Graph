@@ -9,11 +9,15 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { JWT } from "@/logic/auth/JWT";
 import { NetGraph } from "@/components/graphs/netgraph";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/logic/context/redux";
 
 const page = () => {
   const [ident, setident] = useState("");
   const [pass, setpass] = useState("");
   const [error, seterror] = useState("");
+  const dispatch: AppDispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
@@ -32,8 +36,6 @@ const page = () => {
       return () => clearTimeout(timer);
     }
   }, [error]);
-
-  const router = useRouter();
 
   return (
     <div className="flex items-center justify-center h-screen w-screen bg-black">
@@ -71,7 +73,7 @@ const page = () => {
             variant="outline"
             id="auth-submit"
             onClick={async () => {
-              JWT(ident, pass).then((error) => {
+              JWT(ident, pass, dispatch).then((error) => {
                 if (error) {
                   switch (error) {
                     case "401":
@@ -79,6 +81,9 @@ const page = () => {
                       break;
                     case "500":
                       seterror("Internal server error");
+                      break;
+                    default:
+                      seterror(error);
                       break;
                   }
                 } else {

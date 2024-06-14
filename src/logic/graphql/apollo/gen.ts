@@ -1,12 +1,13 @@
+import store from "@/logic/context/redux";
 import {
   ApolloClient,
+  ApolloLink,
   DefaultOptions,
   HttpLink,
   InMemoryCache,
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import { getCookie } from "cookies-next";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -20,9 +21,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const httpLink = new HttpLink({
   uri: "https://learn.reboot01.com/api/graphql-engine/v1/graphql",
-  headers: {
-    Authorization: `Bearer ${getCookie("JWT_TOKEN")}`,
-  },
 });
 
 const defaultOptions: DefaultOptions = {
@@ -39,15 +37,27 @@ const defaultOptions: DefaultOptions = {
 const mainLink = from([errorLink, httpLink]);
 
 /**
- * Generates a new apollo client
+ * Generates a new Apollo client
  * @returns a new Apollo client
  */
 const GenApolloClient = () => {
-  return new ApolloClient({
-    link: mainLink,
+  console.warn(`Bearer ${store.getState().jwt}`);
+  const authMiddleware = new ApolloLink((operation, forward) => {
+    operation.setContext({
+      headers: {
+        Authorization: `Bearer ${store.getState().jwt}`,
+      },
+    });
+    return forward(operation);
+  });
+
+  const client = new ApolloClient({
+    link: authMiddleware.concat(mainLink),
     cache: new InMemoryCache(),
     defaultOptions: defaultOptions,
   });
+
+  return client;
 };
 
 export default GenApolloClient;

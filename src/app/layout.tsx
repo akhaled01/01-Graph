@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Providers } from "@/logic/context/redux";
 
 export const metadata: Metadata = {
   title: "01-Graph",
@@ -13,8 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </Providers>
   );
 }

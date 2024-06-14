@@ -1,16 +1,18 @@
 "use client";
 
+import { RootState } from "@/logic/context/redux";
 import { createGraphiQLFetcher } from "@graphiql/toolkit";
-import { getCookie, hasCookie } from "cookies-next";
 import { GraphiQL } from "graphiql";
 import "graphiql/graphiql.css";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const page = () => {
+  const jwt = useSelector((state: RootState) => state.jwt);
   const router = useRouter();
   useEffect(() => {
-    if (!hasCookie("JWT_TOKEN")) {
+    if (!jwt) {
       router.push("/auth");
     }
   }, []);
@@ -18,7 +20,7 @@ const page = () => {
   const fetcher = createGraphiQLFetcher({
     url: "https://learn.reboot01.com/api/graphql-engine/v1/graphql",
     headers: {
-      Authorization: `Bearer ${getCookie("JWT_TOKEN")}`,
+      Authorization: `Bearer ${jwt}`,
     },
   });
 

@@ -5,16 +5,17 @@ import Sidebar from "@/components/custom/sidebar";
 import AuditRatioGraph from "@/components/graphs/auditratiograph";
 import XPPROJCHART from "@/components/graphs/xpgraph";
 import { MONO_NORMAL, MONO_THIN, SANS } from "@/styles/fonts";
-import { hasCookie } from "cookies-next";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { RootState } from "@/logic/context/redux";
 
 export default function Home() {
+  const jwt = useSelector((state: RootState) => state.jwt);
   const router = useRouter();
 
   useEffect(() => {
-    if (!hasCookie("JWT_TOKEN")) {
-      sessionStorage.clear();
+    if (!jwt) {
       router.push("/auth");
     }
   });

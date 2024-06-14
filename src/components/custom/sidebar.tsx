@@ -6,14 +6,17 @@ import { useRouter } from "next/navigation";
 import profile from "@/assets/profile.svg";
 import gqlIcon from "@/assets/graphql.svg";
 import logout from "@/assets/logout.svg";
-import { deleteCookie } from "cookies-next";
 import {
   BasicUserInfo,
   GetBasicUserInfo,
 } from "@/logic/graphql/apollo/basicinfo";
+import { AppDispatch } from "@/logic/context/redux";
+import { useDispatch } from "react-redux";
+import { clearCredentials } from "@/logic/context/actions";
 
 const Sidebar = () => {
   const [data, setdata] = useState<BasicUserInfo | null>();
+  const dispatch: AppDispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
@@ -56,7 +59,7 @@ const Sidebar = () => {
           alt="logout"
           title="Logout"
           onClick={() => {
-            deleteCookie("JWT_TOKEN");
+            dispatch(clearCredentials());
             router.push("/auth");
           }}
         />

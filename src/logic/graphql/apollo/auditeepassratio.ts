@@ -39,3 +39,10 @@ export const GetAuditorStrictness = async (): Promise<AuditeePassRatio> => {
 
   return data;
 };
+
+export const GetAuditorPassRating = async (): Promise<string> => {
+  const data = await GetAuditorStrictness();
+  const percentage = (data.pass / (data.pass + data.fail)) * 100;
+
+  return percentage + "%";
+};
