@@ -61,14 +61,6 @@ const ProfileDrawer: FC<IntrinsicDrawer> = ({ children }: IntrinsicDrawer) => {
               <p
                 className={`text-[#323232d3] ${SANS_BOLDER.className} text-[2rem] mt-3`}
               >
-                DOB
-              </p>
-              <p className={`text-[1.5rem]`}>{userinfo?.DOB}</p>
-            </div>
-            <div className="w-3/4 h-44  rounded-lg bg-componentBgLighter flex flex-col items-center justify-center px-2">
-              <p
-                className={`text-[#323232d3] ${SANS_BOLDER.className} text-[2rem] mt-3`}
-              >
                 Working On
               </p>
               <p className={`text-[2rem] ${MONO_THIN.className}`}>

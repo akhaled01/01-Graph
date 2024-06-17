@@ -3,7 +3,6 @@ import GenApolloClient from "./gen";
 
 export interface UserInfo {
   FullName: string;
-  DOB: string;
   CurrentlyWorkingOn: string;
 }
 
@@ -21,7 +20,6 @@ export const GetDetailedUserInfo = async (): Promise<UserInfo> => {
       userData.user[0].attrs.firstName.trim() +
       " " +
       userData.user[0].attrs.lastName.trim(),
-    DOB: new Date(userData.user[0].attrs.dateOfBirth).toDateString(),
     CurrentlyWorkingOn: workingOnData.progress[0].object.name,
   };
 

@@ -6,7 +6,6 @@ export interface Project {
   name: string;
   XPamount: string;
   type: string;
-  completed_date: string;
 }
 
 export const GetProjectStats = async (): Promise<Project[] | null> => {
@@ -23,7 +22,6 @@ export const GetProjectStats = async (): Promise<Project[] | null> => {
         name: trans.object.name,
         XPamount: FMT_XP(trans.amount, 1),
         type: trans.object.object_type.type,
-        completed_date: new Date(trans.createdAt).toDateString(),
       };
       projectArray.push(proj);
     });

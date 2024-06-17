@@ -16,7 +16,7 @@ const Page = () => {
     if (!jwt) {
       router.push("/auth");
     }
-  }, []);
+  });
 
   const fetcher = createGraphiQLFetcher({
     url: "https://learn.reboot01.com/api/graphql-engine/v1/graphql",

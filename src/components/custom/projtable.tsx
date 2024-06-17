@@ -12,9 +12,7 @@ const ProjectTable: FC = () => {
   const [data, setdata] = useState<XP_PROJ[]>([]);
 
   useEffect(() => {
-    GetXPPerProj().then((data) =>
-      setdata(data.sort((a, b) => a.date.getTime() - b.date.getTime()))
-    );
+    GetXPPerProj().then((data) => setdata(data));
   }, []);
 
   return (
@@ -35,7 +33,6 @@ const ProjectTable: FC = () => {
               type={proj.type}
               name={proj.name}
               amount={proj.amount}
-              date={proj.date}
             />
           </div>
         ))}

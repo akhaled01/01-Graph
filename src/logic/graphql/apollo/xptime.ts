@@ -4,7 +4,6 @@ import GenApolloClient from "./gen";
 export interface XP_PROJ {
   name: string;
   amount: number;
-  date: Date;
   type: string;
 }
 
@@ -19,7 +18,6 @@ export const GetXPPerProj = async (): Promise<XP_PROJ[]> => {
       let entry: XP_PROJ = {
         name: trans.object.name,
         amount: trans.amount,
-        date: new Date(trans.createdAt),
         type: trans.object.type,
       };
 
