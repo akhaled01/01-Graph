@@ -42,9 +42,9 @@ const AuditeePassGraph: FC = () => {
       `Passed ${data.pass.toString()}`,
       `Failed ${data.fail.toString()}`,
     ];
-    const margin = { top: 30, right: 30, bottom: 55, left: 50 };
+    const margin = { top: 0, right: 30, bottom: 0, left: 50 };
     const maxWidth = 350;
-    const maxHeight = 150;
+    const maxHeight = 300;
     const radius = 100;
     const svg = d3.select(svgRef.current);
 

@@ -14,6 +14,7 @@ import AuditeePassGraph from "@/components/graphs/auditeepassgraph";
 import { GetAuditorPassRating } from "@/logic/graphql/apollo/auditeepassratio";
 import { GetLogin } from "@/logic/graphql/apollo/basicinfo";
 import InfoDialog from "@/components/custom/infodialog";
+import SkillGraph from "@/components/graphs/skillgraph";
 
 export default function Home() {
   const jwt = useSelector((state: RootState) => state.jwt);
@@ -57,19 +58,30 @@ export default function Home() {
           id="bottom-part"
           className="flex items-center justify-between w-full"
         >
-          <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center gap-2 px-3 py-3">
-            <p className={`text-white ${SANS.className} text-2xl mt-2`}>
-              Audit Ratio
-            </p>
-            <AuditRatioGraph />
-          </div>
-          <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center justify-center gap-2 py-3">
-            <p className={`text-white ${SANS.className} text-2xl mt-2`}>
-              Auditee Pass Rate
-            </p>
-            <AuditeePassGraph />
-          </div>
-          <div className="w-350 h-350 bg-componentBg rounded-lg mr-3"></div>
+          <InfoDialog
+            title="Audit Ratio"
+            desc="The ratio between audits you have done (sent), and audits people have done to you (recv)"
+          >
+            <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center gap-2 px-3 py-3">
+              <AuditRatioGraph />
+            </div>
+          </InfoDialog>
+          <InfoDialog
+            title="Auditee Pass Rate"
+            desc="The ratio between the times you passed an auditee and failed an auditee. The pie chart represents that ratio in a visual manner"
+          >
+            <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center justify-center gap-2">
+              <AuditeePassGraph />
+            </div>
+          </InfoDialog>
+          <InfoDialog
+            title="Skill Graph"
+            desc="A visual representation of your skill levels acquired during your time in 01"
+          >
+            <div className="w-350 h-350 bg-componentBg rounded-lg flex flex-col items-center justify-center mr-3">
+              <SkillGraph />
+            </div>
+          </InfoDialog>
         </div>
       </div>
     </div>

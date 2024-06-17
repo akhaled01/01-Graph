@@ -1,3 +1,8 @@
+/**
+ * format xp bytes to a nice XP format (kB or mB)
+ * @param bytes - raw number of bytes 
+ * @returns formatted xp string
+ */
 export const FMT_XP = (bytes: number): string => {
   if (bytes === 0) {
     return "0 KB";
