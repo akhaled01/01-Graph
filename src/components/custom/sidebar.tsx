@@ -13,6 +13,7 @@ import {
 import { AppDispatch } from "@/logic/context/redux";
 import { useDispatch } from "react-redux";
 import { clearCredentials } from "@/logic/context/actions";
+import ProfileDrawer from "./profiledrawer";
 
 const Sidebar = () => {
   const [data, setdata] = useState<BasicUserInfo | null>();
@@ -27,16 +28,18 @@ const Sidebar = () => {
 
   return (
     <div className="w-36 h-screen bg-componentBg flex flex-col justify-around items-center py-4 cursor-pointer">
-      <div
-        id="profile-btn"
-        className="flex flex-col items-center gap-2 px-2 py-2 rounded-lg hover:bg-componentBgLighter duration-500"
-      >
-        <Image src={profile} alt="profile" width={50} title="Profile" />
-        <div id="user-login" className="flex items-end justify-center">
-          <p className="text-white">{data?.login}</p>
-          <p className="text-white text-sm">#{data?.id}</p>
+      <ProfileDrawer>
+        <div
+          id="profile-btn"
+          className="flex flex-col items-center gap-2 px-2 py-2 rounded-lg hover:bg-componentBgLighter duration-500"
+        >
+          <Image src={profile} alt="profile" width={50} title="Profile" />
+          <div id="user-login" className="flex items-end justify-center">
+            <p className="text-white">{data?.login}</p>
+            <p className="text-white text-sm">#{data?.id}</p>
+          </div>
         </div>
-      </div>
+      </ProfileDrawer>
       <div
         id="graphiql-entry"
         className="px-2 py-2 rounded-lg hover:bg-componentBgLighter duration-500"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/logic/context/redux";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "01-Graph",
@@ -16,7 +17,15 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body>{children}</body>
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+          >
+            {children}
+          </ThemeProvider>
+        </body>
       </html>
     </Providers>
   );

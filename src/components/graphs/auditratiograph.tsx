@@ -61,6 +61,9 @@ const AuditRatioGraph: FC = () => {
       .domain([0, biggerRatio as number])
       .range([maxHeight, 0]);
 
+    d3.selectAll(".domain").attr("stroke", "#00000000");
+    d3.selectAll("line").attr("stroke", "#00000000");
+
     g.selectAll("rect")
       .data(auditdata)
       .enter()

@@ -56,6 +56,7 @@ const XPPROJCHART: FC = () => {
 
     g.append("g")
       .attr("transform", "translate(0," + height + ")")
+      .attr("stroke", "#FFD3D318")
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
@@ -67,6 +68,9 @@ const XPPROJCHART: FC = () => {
       .scaleLinear()
       .domain([0, max_xp_project.amount])
       .range([height, 0]);
+
+    d3.select(".domain").attr("stroke", "#00000000");
+    d3.selectAll("line").attr("stroke", "#00000000");
 
     g.selectAll("bar")
       .data(processeedData)
