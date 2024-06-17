@@ -6,7 +6,6 @@ import { gql } from "@apollo/client";
  * user id
  * username
  *
- * Total XP in bytes
  */
 export const BASE_INFO_QUERY = gql`
   query User {
@@ -148,6 +147,27 @@ export const GET_XP_WITH_PROJECT = gql`
       object {
         name
         type
+      }
+    }
+  }
+`;
+
+export const USER_DETAILS = gql`
+  query UserInfo {
+    user {
+      attrs
+    }
+  }
+`;
+
+export const GET_CURRENTLY_WORKING_ON = gql`
+  query Progress {
+    progress(
+      where: { isDone: { _eq: false }, object: { type: { _eq: "project" } } }
+      limit: 1
+    ) {
+      object {
+        name
       }
     }
   }

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const page = () => {
+const Page = () => {
   const jwt = useSelector((state: RootState) => state.jwt);
   const router = useRouter();
   useEffect(() => {
@@ -36,4 +36,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

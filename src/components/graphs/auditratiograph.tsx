@@ -21,8 +21,8 @@ const AuditRatioGraph: FC = () => {
     const auditdata = [data.auditUp, data.auditDown];
     const margin = { top: 30, right: 30, bottom: 55, left: 50 };
     const names = [
-      `${FMT_XP(auditdata[0])} sent`,
-      `${FMT_XP(auditdata[1])} recv`,
+      `${FMT_XP(auditdata[0], 1)} sent`,
+      `${FMT_XP(auditdata[1], 1)} recv`,
     ];
     const colors = ["#F1FFFC44", "#FFFFFF86"];
     const maxHeight = 250 - margin.top - margin.bottom;

@@ -21,7 +21,7 @@ export const GetProjectStats = async (): Promise<Project[] | null> => {
     data.transaction.forEach((trans: any) => {
       let proj: Project = {
         name: trans.object.name,
-        XPamount: FMT_XP(trans.amount),
+        XPamount: FMT_XP(trans.amount, 1),
         type: trans.object.object_type.type,
         completed_date: new Date(trans.createdAt).toDateString(),
       };

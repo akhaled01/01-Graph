@@ -12,7 +12,7 @@ import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/logic/context/redux";
 
-const page = () => {
+const Page = () => {
   const [ident, setident] = useState("");
   const [pass, setpass] = useState("");
   const [error, seterror] = useState("");
@@ -104,4 +104,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

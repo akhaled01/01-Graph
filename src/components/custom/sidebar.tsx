@@ -14,6 +14,7 @@ import { AppDispatch } from "@/logic/context/redux";
 import { useDispatch } from "react-redux";
 import { clearCredentials } from "@/logic/context/actions";
 import ProfileDrawer from "./profiledrawer";
+import { UnknownAction } from "redux";
 
 const Sidebar = () => {
   const [data, setdata] = useState<BasicUserInfo | null>();
@@ -62,7 +63,7 @@ const Sidebar = () => {
           alt="logout"
           title="Logout"
           onClick={() => {
-            dispatch(clearCredentials());
+            dispatch(clearCredentials() as UnknownAction);
             router.push("/auth");
           }}
         />

@@ -29,7 +29,7 @@ const ProjectTable: FC = () => {
               {proj.name}
             </div>
             <div className={`text-left ${MONO_THIN.className}`}>
-              {FMT_XP(proj.amount)}
+              {FMT_XP(proj.amount, 1)}
             </div>
             <TypeBadge
               type={proj.type}

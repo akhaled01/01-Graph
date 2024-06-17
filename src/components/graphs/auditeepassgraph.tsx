@@ -39,8 +39,8 @@ const AuditeePassGraph: FC = () => {
     console.log(ratioData);
 
     const ratioDataStr = [
-      `Passed ${data.pass.toString()}`,
-      `Failed ${data.fail.toString()}`,
+      `Passed ${data.pass.toString()} Auditees`,
+      `Failed ${data.fail.toString()} Auditees`,
     ];
     const margin = { top: 0, right: 30, bottom: 0, left: 50 };
     const maxWidth = 350;
