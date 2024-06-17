@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       colors: {
-        componentBg: "#131313",
+        componentBg: "#080808AC",
         sunnyBlue: "#4B4BFF61",
         wateryYellow: "#FFA0539F",
         hgreen: "#53C8FF9F",

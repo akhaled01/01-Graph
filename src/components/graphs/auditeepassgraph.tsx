@@ -7,21 +7,37 @@ import {
   GetAuditorStrictness,
 } from "@/logic/graphql/apollo/auditeepassratio";
 import { MONO_NORMAL, MONO_THIN } from "@/styles/fonts";
+import { GetLogin } from "@/logic/graphql/apollo/basicinfo";
 
 const AuditeePassGraph: FC = () => {
+  const [login, setlogin] = useState("");
   const [data, setData] = useState<AuditeePassRatio | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
+  // get username for graphql query
   useEffect(() => {
-    GetAuditorStrictness().then((rawData): void => {
-      setData(rawData);
-    });
+    GetLogin().then((login) => setlogin(login?.login!));
   }, []);
 
+  // get related data
+  useEffect(() => {
+    if (login) {
+      console.log(login);
+      GetAuditorStrictness(login).then((rawData): void => {
+        setData(rawData);
+      });
+    } else {
+      console.error("no login");
+    }
+  }, [login]);
+
+  // constrcut d3 graph
   useEffect(() => {
     if (!data || data.pass === undefined || data.fail === undefined) return;
 
     const ratioData = [data.pass, data.fail];
+    console.log(ratioData);
+
     const ratioDataStr = [
       `Passed ${data.pass.toString()}`,
       `Failed ${data.fail.toString()}`,

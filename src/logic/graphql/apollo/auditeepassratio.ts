@@ -6,31 +6,33 @@ export interface AuditeePassRatio {
   fail: number;
 }
 
-const GetAuditeePassRatio = async (): Promise<any> => {
+const GetAuditeePassRatio = async (username: string): Promise<any> => {
   const { data } = await GenApolloClient().query({
     query: AUDIT_SUCCESS_NUM_QUERY,
     variables: {
-      userlogin: sessionStorage.getItem("01-USERNAME"),
+      userlogin: username,
     },
   });
 
   return data;
 };
 
-const GetAuditeeFailRatio = async (): Promise<any> => {
+const GetAuditeeFailRatio = async (username: string): Promise<any> => {
   const { data } = await GenApolloClient().query({
     query: AUDIT_FAIL_NUM_QUERY,
     variables: {
-      userlogin: sessionStorage.getItem("01-USERNAME"),
+      userlogin: username,
     },
   });
 
   return data;
 };
 
-export const GetAuditorStrictness = async (): Promise<AuditeePassRatio> => {
-  const passcount = await GetAuditeePassRatio();
-  const failcount = await GetAuditeeFailRatio();
+export const GetAuditorStrictness = async (
+  username: string
+): Promise<AuditeePassRatio> => {
+  const passcount = await GetAuditeePassRatio(username);
+  const failcount = await GetAuditeeFailRatio(username);
 
   const data: AuditeePassRatio = {
     pass: passcount.audit_aggregate.aggregate.count,
@@ -40,8 +42,10 @@ export const GetAuditorStrictness = async (): Promise<AuditeePassRatio> => {
   return data;
 };
 
-export const GetAuditorPassRating = async (): Promise<string> => {
-  const data = await GetAuditorStrictness();
+export const GetAuditorPassRating = async (
+  username: string
+): Promise<string> => {
+  const data = await GetAuditorStrictness(username);
   const percentage = (data.pass / (data.pass + data.fail)) * 100;
 
   return percentage + "%";

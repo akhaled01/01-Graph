@@ -35,15 +35,6 @@ export const JWT = async (
 
       dispatch(setJwt(jwt.replaceAll('"', "")));
 
-      const loginRes = await GetLogin();
-
-      if (!loginRes || !loginRes.login) {
-        console.warn("Failed to fetch user login information");
-        return "500";
-      }
-
-      dispatch(setLogin(loginRes.login));
-
       return "";
     } else if (res.status === 401 || res.status === 403) {
       return "401";

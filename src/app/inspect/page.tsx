@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/custom/loading";
 import { RootState } from "@/logic/context/redux";
 import { createGraphiQLFetcher } from "@graphiql/toolkit";
 import { GraphiQL } from "graphiql";
@@ -24,9 +25,13 @@ const page = () => {
     },
   });
 
-  return (
+  return jwt ? (
     <div className="h-screen">
       <GraphiQL fetcher={fetcher} />
+    </div>
+  ) : (
+    <div className="w-screen h-screen flex items-center justify-center bg-black">
+      <Loading />
     </div>
   );
 };
