@@ -5,6 +5,7 @@ export interface XP_PROJ {
   name: string;
   amount: number;
   type: string;
+  date: Date;
 }
 
 export const GetXPPerProj = async (): Promise<XP_PROJ[]> => {
@@ -19,6 +20,7 @@ export const GetXPPerProj = async (): Promise<XP_PROJ[]> => {
         name: trans.object.name,
         amount: trans.amount,
         type: trans.object.type,
+        date: new Date(trans.createdAt)
       };
 
       console.warn(XP_PROJ_ARR);

@@ -12,7 +12,9 @@ const ProjectTable: FC = () => {
   const [data, setdata] = useState<XP_PROJ[]>([]);
 
   useEffect(() => {
-    GetXPPerProj().then((data) => setdata(data));
+    GetXPPerProj().then((data) =>
+      setdata(data.sort((a, b) => a.date.getTime() - b.date.getTime()))
+    );
   }, []);
 
   return (
@@ -32,6 +34,7 @@ const ProjectTable: FC = () => {
             <TypeBadge
               type={proj.type}
               name={proj.name}
+              date={proj.date}
               amount={proj.amount}
             />
           </div>
